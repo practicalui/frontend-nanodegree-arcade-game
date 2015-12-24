@@ -37,7 +37,6 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-
 // player always starts at column 2 row 5
 
 var Player = function() {
