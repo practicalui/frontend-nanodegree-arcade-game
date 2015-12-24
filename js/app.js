@@ -9,7 +9,8 @@ var Enemy = function(row) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = getColPixels(0);
+    var start = Math.floor((Math.random() * 5));
+    this.x = getColPixels(start);
     this.y = getRowPixels(row);
 };
 
