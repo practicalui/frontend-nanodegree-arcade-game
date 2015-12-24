@@ -77,9 +77,7 @@ Player.prototype.reset = function() {
   function checkCollisions() {
     for (i=0; allEnemies.length>i; i++) {
       if (player.x >= allEnemies[i].x-50 && player.x <= allEnemies[i].x+50 && player.y===allEnemies[i].y) {
-        console.log('collision');
         player.reset();
-        return true;
       }
     }
   }
