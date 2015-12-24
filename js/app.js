@@ -1,5 +1,5 @@
-var rowSize = 83;
-var colSize = 101;
+var ROWSIZE = 83;
+var COLSIZE = 101;
 
 // Enemies our player must avoid
 var Enemy = function(row) {
@@ -57,13 +57,13 @@ Player.prototype.handleInput = function(thekey) {
   var numCols = 5;
 
   if (thekey==='up' && getRow(this.y)> 0) {
-    this.y-=rowSize;
+    this.y-=ROWSIZE;
   } else if (thekey==='down' && getRow(this.y)<numRows-1) {
-    this.y+=rowSize;
+    this.y+=ROWSIZE;
   } else if (thekey==='right' && getCol(this.x)<numCols-1) {
-    this.x+=colSize;
+    this.x+=COLSIZE;
   } else if (thekey==='left' && getCol(this.x)>0) {
-    this.x-=colSize;
+    this.x-=COLSIZE;
   }
   //console.log(getRow(this.y));
 
@@ -124,17 +124,17 @@ document.addEventListener('keyup', function(e) {
 
 
 function getColPixels(c) {
-  return c*colSize;
+  return c*COLSIZE;
 }
 
 function getRowPixels(r) {
-  return r*rowSize;
+  return r*ROWSIZE;
 }
 
 function getCol(x) {
-  return x/colSize;
+  return x/COLSIZE;
 }
 
 function getRow(y) {
-  return y/rowSize;
+  return y/ROWSIZE;
 }
