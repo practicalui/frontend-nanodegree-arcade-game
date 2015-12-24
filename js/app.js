@@ -86,6 +86,16 @@ Player.prototype.reset = function() {
     }
   }
 
+  function checkWinner() {
+    if (player.y===getRowPixels(0)) {
+      $('#win').removeClass('hidden');
+      setTimeout(function(){
+        $('#win').addClass('hidden');
+      }, 2000);
+      player.reset();
+    }
+  }
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player

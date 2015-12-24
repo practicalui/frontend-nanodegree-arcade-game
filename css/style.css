@@ -9,11 +9,12 @@ body {
 }
 
 #error {
-  position: relative;
-  top: -450px;
+
 }
 
 .message {
+  position: relative;
+  top: -450px;
   color: red;
   padding: 50 50 50 50;
   background:rgba(255,255,255,0.7);
