@@ -69,10 +69,16 @@ Player.prototype.handleInput = function(thekey) {
   this.render();
 };
 
+Player.prototype.reset = function() {
+  this.x = getColPixels(2);
+  this.y = getRowPixels(5);
+}
+
   function checkCollisions() {
     for (i=0; allEnemies.length>i; i++) {
       if (player.x >= allEnemies[i].x-50 && player.x <= allEnemies[i].x+50 && player.y===allEnemies[i].y) {
         console.log('collision');
+        player.reset();
         return true;
       }
     }
