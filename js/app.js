@@ -2,6 +2,8 @@ var ROWSIZE = 83;
 var COLSIZE = 101;
 
 // Enemies our player must avoid
+// takes a number between 1 and 3 to indicate which row
+// in the road that the enemy should appear on.
 var Enemy = function(row) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -9,7 +11,7 @@ var Enemy = function(row) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    var start = Math.floor((Math.random() * 5));
+    var start = Math.floor(Math.random() * 5); // initial appearance is random x
     this.x = getColPixels(start);
     this.y = getRowPixels(row);
 };
@@ -22,7 +24,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     var speed = Math.floor((Math.random() * 100) + 50);
     this.x+=1*dt*speed;
-    if (this.x>getColPixels(5)) {
+    if (this.x>getColPixels(5)) { //when the bug gets to the end, send it back to the start
       this.x=getColPixels(0);
     }
 };
@@ -36,12 +38,14 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+// player always starts at column 2 row 5
+
 var Player = function() {
   this.sprite = 'images/char-horn-girl.png';
   this.x = getColPixels(2);
   this.y = getRowPixels(5);
   //console.log(getRow(this.y));
-}
+};
 
 Player.prototype.update = function(dt) {
 
@@ -50,6 +54,8 @@ Player.prototype.update = function(dt) {
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
 };
+
+// respond to arrow keys the user clicks
 
 Player.prototype.handleInput = function(thekey) {
   //console.log(thekey);
@@ -69,16 +75,17 @@ Player.prototype.handleInput = function(thekey) {
 
   this.render();
 };
-
+// send the player back to the start
 Player.prototype.reset = function() {
   this.x = getColPixels(2);
   this.y = getRowPixels(5);
-}
+};
 
+// checks for collisions between the player and each enemy
   function checkCollisions() {
     for (i=0; allEnemies.length>i; i++) {
       if (player.x >= allEnemies[i].x-50 && player.x <= allEnemies[i].x+50 && player.y===allEnemies[i].y) {
-        $('#error').removeClass('hidden');
+        $('#error').removeClass('hidden'); //unhide the error div from index.html
         setTimeout(function(){
           $('#error').addClass('hidden');
         }, 2000);
@@ -87,6 +94,7 @@ Player.prototype.reset = function() {
     }
   }
 
+// check whether the player reached the end
   function checkWinner() {
     if (player.y===getRowPixels(0)) {
       $('#win').removeClass('hidden');
@@ -122,7 +130,7 @@ document.addEventListener('keyup', function(e) {
 });
 
 
-
+// convenience methods for switching between pixels and columns/rows
 function getColPixels(c) {
   return c*COLSIZE;
 }
