@@ -1,3 +1,20 @@
 body {
     text-align: center;
+    font-family: sans-serif;
+    font-size: 36px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#error {
+  position: relative;
+  top: -450px;
+}
+
+.message {
+  color: red;
+  padding: 50 50 50 50;
+  background:rgba(255,255,255,0.7);
 }

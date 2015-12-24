@@ -77,6 +77,10 @@ Player.prototype.reset = function() {
   function checkCollisions() {
     for (i=0; allEnemies.length>i; i++) {
       if (player.x >= allEnemies[i].x-50 && player.x <= allEnemies[i].x+50 && player.y===allEnemies[i].y) {
+        $('#error').removeClass('hidden');
+        setTimeout(function(){
+          $('#error').addClass('hidden');
+        }, 2000);
         player.reset();
       }
     }
